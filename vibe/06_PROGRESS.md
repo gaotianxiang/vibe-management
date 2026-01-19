@@ -16,8 +16,7 @@ Bootstrap the vibe coding PM system and prepare it for real-world usage.
 ## Next steps
 1. Instantiate a real project using templates/
 2. Run first real `/vibe:start` session
-3. Capture friction in META.md
-4. Iterate on commands/templates
+3. Iterate on commands/templates
 
 ## Known issues / risks
 - Unknown ergonomics at scale
