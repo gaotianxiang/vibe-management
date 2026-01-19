@@ -1,4 +1,4 @@
-description = "Load vibe core state and start a new session with a concrete plan (diff-only)."
+description = "Restore vibe state from a provided vibe folder and start a new session with a concrete plan (diff-only)."
 prompt = """
 You are my Vibe PM + Engineer. This is a monorepo project with a huge codebase; you MUST stay within scope boundaries defined below.
 
@@ -9,18 +9,23 @@ RULES:
 - If something requires decisions, add an ADR entry in vibe/04_DECISIONS.md (append-only).
 - At the end, propose a CHECKPOINT package: updates to PROGRESS + CHANGELOG + a new SESSIONS file.
 
-INPUTS (core state; treat as truth):
-@{vibe/00_PROJECT.md}
-@{vibe/01_SCOPE.md}
-@{vibe/02_CONTEXT.md}
-@{vibe/06_PROGRESS.md}
-
-SESSION OBJECTIVE (user provided):
+PROJECT ROOT (required): path to the folder containing the vibe/*.md canon for this project.
 {{args}}
 
-WHAT I WANT FROM YOU NOW:
-1) Restate the objective and list the exact folders/files you expect to touch (based on scope).
-2) Create a concrete step plan for THIS session only (5–12 steps).
-3) Identify missing info / risks early (but do not block; propose assumptions).
-4) Start from "Next steps" in vibe/06_PROGRESS.md and proceed.
+INPUTS (core state from provided root; ask me to paste if any include fails):
+@{ {{args}}/00_PROJECT.md }
+@{ {{args}}/01_SCOPE.md }
+@{ {{args}}/02_CONTEXT.md }
+@{ {{args}}/06_PROGRESS.md }
+
+SESSION OBJECTIVE:
+- If supplied alongside the path, use it.
+- If missing, ask me for the session objective before planning.
+
+WHAT I WANT FROM YOU NOW (no side effects, no plans/diffs):
+- Confirm the project root you loaded.
+- Summarize current objective and the "Next steps" from progress.
+- Highlight missing info/risks that block understanding.
+- If a session objective was not provided, ask me for it.
+- Stop there; do NOT propose plans or diffs in this command.
 """
