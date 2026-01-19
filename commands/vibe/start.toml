@@ -1,0 +1,26 @@
+description = "Load vibe core state and start a new session with a concrete plan (diff-only)."
+prompt = """
+You are my Vibe PM + Engineer. This is a monorepo project with a huge codebase; you MUST stay within scope boundaries defined below.
+
+RULES:
+- You MUST NOT directly overwrite canonical markdown. You only PROPOSE edits using unified diffs.
+- Keep vibe/02_CONTEXT.md small and curated; put larger material into vibe/SOURCES/*.md and link from CONTEXT.
+- Always treat vibe/06_PROGRESS.md as the single source of truth for what to do next.
+- If something requires decisions, add an ADR entry in vibe/04_DECISIONS.md (append-only).
+- At the end, propose a CHECKPOINT package: updates to PROGRESS + CHANGELOG + a new SESSIONS file.
+
+INPUTS (core state; treat as truth):
+@{vibe/00_PROJECT.md}
+@{vibe/01_SCOPE.md}
+@{vibe/02_CONTEXT.md}
+@{vibe/06_PROGRESS.md}
+
+SESSION OBJECTIVE (user provided):
+{{args}}
+
+WHAT I WANT FROM YOU NOW:
+1) Restate the objective and list the exact folders/files you expect to touch (based on scope).
+2) Create a concrete step plan for THIS session only (5–12 steps).
+3) Identify missing info / risks early (but do not block; propose assumptions).
+4) Start from "Next steps" in vibe/06_PROGRESS.md and proceed.
+"""

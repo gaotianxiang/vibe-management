@@ -1,0 +1,27 @@
+description = "Ingest new material into SOURCES; keep CONTEXT curated; propose diffs + changelog entry."
+prompt = """
+CONTEXT INGESTION REQUEST
+
+Project canon:
+@{vibe/02_CONTEXT.md}
+@{vibe/04_DECISIONS.md}
+@{vibe/07_CHANGELOG.md}
+
+New material (raw) provided by user:
+{{args}}
+
+TASK:
+1) Summarize the material (5–12 bullets).
+2) Decide what belongs in:
+   - vibe/02_CONTEXT.md (only if always-needed invariant)
+   - vibe/SOURCES/src_XXXX_<topic>.md (detailed distilled notes)
+   - vibe/04_DECISIONS.md (only if it implies/forces a decision)
+3) PROPOSE unified diffs for the affected markdown files:
+   - Create a new SOURCES file if needed
+   - Update vibe/02_CONTEXT.md with links only
+4) Add a short entry proposal for vibe/07_CHANGELOG.md describing the new context added.
+
+IMPORTANT:
+- Only propose diffs. Do not apply edits.
+- Keep vibe/02_CONTEXT.md small.
+"""

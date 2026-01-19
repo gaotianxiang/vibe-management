@@ -1,0 +1,30 @@
+description = "Propose end-of-session checkpoint diffs (PROGRESS, CHANGELOG, SESSIONS, optional ADR)."
+prompt = """
+CHECKPOINT REQUEST
+
+Canonical state:
+@{vibe/06_PROGRESS.md}
+@{vibe/07_CHANGELOG.md}
+@{vibe/04_DECISIONS.md}
+
+Based on everything done in this session (and any notes I provide), propose a checkpoint package.
+
+SESSION NOTES / RESULTS (user provided):
+{{args}}
+
+OUTPUT REQUIREMENTS:
+- Provide unified diffs ONLY for:
+  - vibe/06_PROGRESS.md
+  - vibe/07_CHANGELOG.md
+  - vibe/SESSIONS/YYYY-MM-DD_session-NNN.md (create if missing)
+  - vibe/04_DECISIONS.md (only if a decision was made)
+- PROGRESS must have:
+  - Updated Completed/In progress/Next steps
+  - Verification status for build/test/lint (use my reported results; if unknown, mark Not run)
+- CHANGELOG entry must include:
+  - Summary, Files changed, Why, Risk, Verification
+- SESSIONS file must include:
+  - Intent, Inputs added, Work performed, Decisions, Issues, Next handoff
+
+If something is unclear, make a reasonable assumption and record it under "Issues/surprises" and "Known issues/risks".
+"""

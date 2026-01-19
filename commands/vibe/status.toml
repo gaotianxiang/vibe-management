@@ -1,0 +1,17 @@
+description = "Summarize current objective, next steps, risks, and verification status from canonical files."
+prompt = """
+Read the project canonical state and summarize it for me.
+
+@{vibe/00_PROJECT.md}
+@{vibe/01_SCOPE.md}
+@{vibe/02_CONTEXT.md}
+@{vibe/06_PROGRESS.md}
+@{vibe/08_RISKS.md}
+
+OUTPUT:
+- Current objective
+- Next 3 steps
+- Top 3 risks
+- Verification status (build/test/lint)
+- Any scope boundary reminders relevant to next steps
+"""
